@@ -31,7 +31,7 @@ class PIconInput extends Component {
           style={this.props.style || {}}
         />
       </div>
-    );
+    )
   }
 }
 
