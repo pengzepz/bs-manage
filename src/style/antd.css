@@ -1,0 +1,35 @@
+.icon-input-wrapper {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.button-wrapper {
+  width: 80%;
+  /*margin: 0 auto;*/
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button-wrapper .button {
+  width: 100%;
+}
+
+.menu-wrap {
+  width: 200px;
+  height: 100%;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.steps-wrapper {
+  /*border: 1px solid red;*/
+}
