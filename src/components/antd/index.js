@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Input, Icon, Button, notification, Menu, Steps, Select } from 'antd';
+import { Input, Icon, Button, notification, Menu, Steps, Select, Upload, Modal } from 'antd';
 
 import '../../style/antd.css';
 
@@ -81,8 +81,8 @@ class PButton extends Component {
   }
   render() {
     return (
-      <div className='button-wrapper' style={this.props.style || {}}>
-        <Button type="primary" className='button' onClick={this.props.onClick}>{this.props.text}</Button>
+      <div className='button-wrapper' style={this.props.style || {width: '80%'}}>
+        <Button type="primary" className='button' onClick={this.props.onClick} >{this.props.text}</Button>
       </div>
     )
   }
@@ -177,11 +177,91 @@ class PSteps extends Component {
     )
   }
 }
+
+class PSelect extends Component {
+  static defaultProps = {
+    list: ['one','two', 'three']
+  }
+   handleChange(value) {
+    console.log(`selected ${value}`);
+    this.props.onChange(value);
+  }
+  componentDidMount() {
+    this.handleChange(this.props.list[0]);
+  }
+  render() {
+    const Option = Select.Option;
+
+    return (
+
+        <Select defaultValue={this.props.list[0]} style={this.props.style} onChange={this.handleChange.bind(this)}>
+          {
+            this.props.list.map((item, index) => <Option value={item} key={index}>{item}</Option>)
+          }
+        </Select>
+    )
+  }
+}
+
+class PUploadImg extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      previewVisible: false,
+      previewImage: '',
+      fileList: [{
+        uid: -1,
+        name: 'xxx.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      }],
+    };
+  }
+  handleCancel = () => this.setState({ previewVisible: false })
+
+  handlePreview = (file) => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  }
+
+  handleChange = ({ fileList }) => this.setState({ fileList })
+  render() {
+    const { previewVisible, previewImage, fileList } = this.state;
+     const uploadButton = (
+       <div>
+         <Icon type="plus" />
+         <div className="ant-upload-text">Upload</div>
+       </div>
+     );
+    return (
+      <div className="clearfix">
+        <Upload
+          action="//jsonplaceholder.typicode.com/posts/"
+          listType="picture-card"
+          fileList={fileList}
+          onPreview={this.handlePreview}
+          onChange={this.handleChange}
+          accept="image/*"
+        >
+          {fileList.length >= 3 ? null : uploadButton}
+        </Upload>
+        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        </Modal>
+      </div>
+    )
+  }
+}
+
 export {
   PIconInput,
   PInput,
   PButton,
   pnotification,
   PMenu,
-  PSteps
+  PSteps,
+  PSelect,
+  PUploadImg
 }

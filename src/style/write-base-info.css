@@ -1,0 +1,29 @@
+.write-base-info {}
+
+.write-base-info .boundary {
+  margin: 80px 0;
+}
+
+.write-base-info .upload-img-wrapper .upload-img-header {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.write-base-info .upload-img-wrapper .upload-img-header .title {
+  font-size: 20px;
+}
+
+.write-base-info .upload-img-wrapper .upload-img-header .description {
+  font-size: 12px;
+  color: #ccc;
+}
+
+.write-base-info .upload-img-wrapper .btn-upload-img-wrapper {
+  text-align: center;
+}
+
+.write-base-info .upload-img-wrapper .btn-upload-img {
+  color: rgb(39, 127, 207);
+  cursor: pointer;
+}

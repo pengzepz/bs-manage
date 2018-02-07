@@ -5,7 +5,7 @@ export default class TopSteps extends Component {
   render() {
     return (
       <div style={this.props.style}>
-        <PSteps />
+        <PSteps current={this.props.current} />
       </div>
     )
   }

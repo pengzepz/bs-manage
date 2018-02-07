@@ -8,13 +8,9 @@
   margin-top: 20px;
 }
 
-.button-wrapper {
+/*.button-wrapper {
   width: 80%;
-  /*margin: 0 auto;*/
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+}*/
 
 .button-wrapper .button {
   width: 100%;
@@ -32,4 +28,16 @@
 
 .steps-wrapper {
   /*border: 1px solid red;*/
+}
+
+/* you can make up upload button and sample style by using stylesheets */
+
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
 }

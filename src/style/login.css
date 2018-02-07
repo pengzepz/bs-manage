@@ -15,8 +15,10 @@
   min-height: 450px;
   background-color: white;
   box-sizing: border-box;
-  padding-top: 50px;
-  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .login-title {
