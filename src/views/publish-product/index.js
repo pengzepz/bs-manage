@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import '../../style/publish-product.css';
+import { pnotification } from '../../components/antd';
 import TopSteps from '../../components/publish-product/TopSteps';
 import SelectProductCategory from '../../components/publish-product/select-product-category';
 import WriteBaseInfo from '../../components/publish-product/write-base-info';
@@ -11,7 +12,7 @@ export default class PublishProduct extends Component {
     this.state = {
       nowCategory: '',
       productName: '',
-      showContent: 'WriteBaseInfo'
+      showContent: 'TradeInfo'
     }
   }
   changeHandler(key, value) {
@@ -20,7 +21,7 @@ export default class PublishProduct extends Component {
     });
     console.log(value,'productName');
   }
-  handleSelectChange(selected) {
+  handlerSelectChange(selected) {
     this.setState({
       nowCategory: selected
     })
@@ -35,20 +36,23 @@ export default class PublishProduct extends Component {
       showContent: path
     });
   }
+  submit() {
+    pnotification({desc: '提交成功！'});
+  }
   _showContentFn(showContent) {
     switch (showContent) {
       case 'SelectProductCategory':
-        return <SelectProductCategory onChange={this.handleSelectChange.bind(this)} onNext={this.next.bind(this,'WriteBaseInfo')} />
+        return <SelectProductCategory onChange={this.handlerSelectChange.bind(this)} onNext={this.next.bind(this,'WriteBaseInfo')} />
         break;
       case 'WriteBaseInfo':
         return <WriteBaseInfo onPre={this.pre.bind(this,'SelectProductCategory')} onNext={this.next.bind(this,'TradeInfo')} />
         break;
       case 'TradeInfo':
-        return <TradeInfo onPre={this.pre.bind(this,'WriteBaseInfo')} onNext={this.next.bind(this,'TradeInfo')} />
+        return <TradeInfo onPre={this.pre.bind(this,'WriteBaseInfo')} onNext={this.submit.bind(this,'TradeInfo')} />
         break;
 
       default:
-      return <SelectProductCategory onChange={this.handleSelectChange.bind(this)} onNext={this.next.bind(this,'WriteBaseInfo')} />
+      return <SelectProductCategory onChange={this.handlerSelectChange.bind(this)} onNext={this.next.bind(this)} />
     }
   }
   _stepCurrentFn(stepCurrent) {
