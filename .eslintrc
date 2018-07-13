@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb"
+  ],
+  "rules": {
+      "comma-dangle": 0,
+      "import/no-unresolved": 0
+    }
+}
